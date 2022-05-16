@@ -2,11 +2,13 @@ for(var i = 0; i<document.querySelectorAll(".drum").length; i++){
   document.querySelectorAll(".drum")[i].addEventListener("click", function (){
     var button = this.innerHTML;
     makeSound(button);
+    buttonAnimation(button);
     });
 }
 
 document.addEventListener("keypress", function(event){
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 function makeSound(key){
@@ -33,4 +35,11 @@ function makeSound(key){
           new Audio("sounds/kick-bass.mp3").play();
           break;
   }
+}
+
+function buttonAnimation(key){
+  document.querySelector("."+key).classList.add("pressed");
+  setTimeout(function(){
+    document.querySelector("."+key).classList.remove("pressed");
+  }, 100)
 }
